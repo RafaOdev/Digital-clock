@@ -1,26 +1,36 @@
 let container = document.querySelector('.container');
-        let hour = document.querySelector('.hour');
-        let minute = document.querySelector('.minutes');
-        let second = document.querySelector('.seconds');
+let hour = document.querySelector('.hour');
+let minute = document.querySelector('.minute');
+let second = document.querySelector('.second');
+let Body = document.querySelector('.body');
 
-        setInterval(() => {
+
+    setInterval(function Day(){
             let date = new Date();
-            let hours = date.getHours();
             let minutes = date.getMinutes();
             let seconds = date.getSeconds();
-    
+            let hours = date.getHours();
 
-                 hour.innerHTML = `${hours}`;
-                 minute.innerHTML = `${minutes}`;
-                 second.innerHTML = `${seconds}`;
-            
-                 if (hours <= 9 ){
-                    hour.innerHTML = `0${hours}`;
-                }
-                 else if (minutes <= 9){
-                    minute.innerHTML = `0${minutes}`;
-                }
-                 if (seconds <= 9){
-                    second.innerHTML = `0${seconds}`
-                }
-        }, 1000)
+            DayPeriod(hours)
+
+                if (hours <= 9) hours = '0' + hours;
+                if (minutes <= 9) minutes = '0' + minutes;
+                if (seconds <= 9) seconds = '0' + seconds;
+
+            hour.innerHTML = `${hours}`
+            minute.innerHTML = `${minutes}`
+            second.innerHTML = `${seconds}`
+
+        function DayPeriod(hours){
+            if (hours >= 6 && hours < 12){
+                Body.setAttribute('class', 'morning');
+            }else if (hours >= 12 && hours <= 17){
+                Body.setAttribute('class', 'partTime');
+            }else if (hours >= 18 && hours < 19){
+                Body.setAttribute('class', 'sunset');
+            }else if (hours >= 19){
+                Body.setAttribute('class', 'nigth');
+            }
+        }            
+    })
+        
