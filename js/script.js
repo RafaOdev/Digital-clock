@@ -31,6 +31,8 @@ let Body = document.querySelector('.body');
             }else if (hours >= 19){
                 Body.setAttribute('class', 'nigth');
             }
+
+            return;
         }            
     })
         
